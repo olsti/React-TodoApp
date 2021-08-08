@@ -1,6 +1,6 @@
 import React from 'react';
 
-const From = ({todos, setTodos, inputText, setInputText}) => {
+const From = ({todos, setTodos, inputText, setInputText, setStatus}) => {
 
     const inputTextHandler = (e) => {
         console.log(e.target.value);
@@ -12,6 +12,9 @@ const From = ({todos, setTodos, inputText, setInputText}) => {
             ...todos, {text: inputText, completed: false, id: Math.random() * 1000},
         ])
     }
+    const statusHandler = (e) => {
+        setStatus(e.target.value)
+    }
     return (
         <form>
             <input value = {inputText} onChange={inputTextHandler} type="text" className="todo-input" />
@@ -19,7 +22,7 @@ const From = ({todos, setTodos, inputText, setInputText}) => {
                 <i className="fas fa-plus-square"></i>
             </button>
             <div className="select">
-                <select name="todos" className="filter-todo">
+                <select onClick={statusHandler} name="todos" className="filter-todo">
                 <option value="all">All</option>
                 <option value="completed">Completed</option>
                 <option value="uncompleted">Uncompleted</option>
